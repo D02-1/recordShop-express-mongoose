@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    height:100vh;
+    background: #52c234;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #061700, #52c234);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #061700, #52c234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+h1{
+    color: rgb(235, 123, 18);
+}
+
+p{
+    color:beige
+}
+
+.error{
+    font-size: 6rem;
+}

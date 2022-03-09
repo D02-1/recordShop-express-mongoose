@@ -45,13 +45,13 @@ app.use("/orders", ordersRouter);
 /** ERROR HANDLING */
 app.use((req, res, next) => {
     const error = new Error("Looks like something broke...");
-    error.status = 404;
+    error.statusCode = 404;
     next(error);
 });
 
 app.use((err, req, res, next) => {
 
-    res.status(err.status || 500).send({
+    res.status(error.statusCode || 500).send({
         error: {
             message: err.message
         }

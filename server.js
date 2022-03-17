@@ -4,6 +4,8 @@ const express = require('express');
 const path = require("path");
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
+const multer = require('multer');
+
 
 
 /** IMPORTS */
@@ -12,6 +14,7 @@ const recordsRouter = require("./routes/records");
 const ordersRouter = require("./routes/orders");
 const { setCors } = require("./middleware/cors");
 const { requestLogger } = require("./middleware/reqLogger.js")
+const Record = require("./models/Record");
 
 
 /** VARIABLES */
@@ -41,6 +44,23 @@ app.use("/users", usersRouter);
 app.use("/records", recordsRouter);
 app.use("/orders", ordersRouter);
 
+app.get('/images', async (req, res, next) =>
+{
+    try{ 
+    // const coverImg = await Record.findOne({_id: "622f8f7244f38a1c5a126f00"})
+    const coverImg = await Record.findOne({_id: "622f8f7244f38a1c5a126f00"})
+    console.log("here we go", coverImg);
+    const coverImgBob = coverImg.img
+    console.log("Bob", coverImgBob.contentType);
+    if(!coverImg) throw new Error("no img found")
+            // wenn das bild gefunden wurde, übergeben wir einen status 200:
+            res.status(200).contentType(coverImgBob.contentType).send(coverImgBob.data);
+    }catch(err){
+        next(err)
+    }
+});
+
+
 
 /** ERROR HANDLING */
 app.use((req, res, next) => {
@@ -51,7 +71,7 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
 
-    res.status(error.statusCode || 500).send({
+    res.status(err.statusCode || 500).send({
         error: {
             message: err.message
         }

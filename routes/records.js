@@ -1,12 +1,20 @@
 const express = require("express");
 const router = express.Router();
+const multer = require('multer');
 
 const {getRecords, getRecord, updateRecord, deleteRecord, addRecord} = require("../controllers/recordsController");
+
+const upload = multer({
+  limits:
+  {
+      fileSize: 50000000
+  }
+});
 
 router
   .route("/")
   .get(getRecords)
-  .post(addRecord);
+  .post( upload.single("cover"),addRecord);
 
 router
   .route("/:id")

@@ -7,5 +7,15 @@
   <body>
     <h1>Hello Crazy Coders!</h1>
     <p>This is a solution suggestion for our Record Shop API</p>
+    <img src="./vinyl.png" alt="vinyl">
+    <p class="instruction">Upload new stock to the dadabase. Include Cover Image of the Record</p>
+    <form action="/records" enctype="multipart/form-data" method="POST">
+      <input type="file" name="cover" accept="image/*">
+      <input type="text" placeholder="title" name="title">
+      <input type="text" placeholder="artist" name="artist">
+      <input type="number" placeholder="year of release"  min="1950" max="2022" name="year">
+      <input type="submit" value="Send">
+  </form>
   </body>
 </html>
+

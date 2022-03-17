@@ -13,8 +13,8 @@ const getUsers = async (req, res, next) => {
       amount: users.length,
       data: users,
     });
-  } catch (e) {
-    next(e);
+  } catch (err) {
+    next(err);
   }
 };
 
@@ -28,8 +28,8 @@ const getUser = async (req, res, next) => {
       success: true,
       data: user,
     });
-  } catch (e) {
-    next(e);
+  } catch (err) {
+    next(err);
   }
 };
 
@@ -52,8 +52,8 @@ const deleteUser = async (req, res, next) => {
       message: `User with email ${user.email} was successfully deleted.`,
       deleted: delUser
     });
-  } catch (e) {
-    next(e);
+  } catch (err) {
+    next(err);
   }
 };
 
@@ -96,8 +96,8 @@ const updateUser = async (req, res, next) => {
   
     if (!user) throw new Error("not found");
 
-  } catch (e) {
-    next(e);
+  } catch (err) {
+    next(err);
   }
 };
 
@@ -135,8 +135,8 @@ const addUser = async (req, res, next) => {
       message: `Thanks ${firstName} for registering.`,
       data: user
     });
-  } catch (e) {
-    next(e);
+  } catch (err) {
+    next(err);
   }
 };
 
@@ -181,8 +181,8 @@ const loginUser = async (req, res, next) => {
       })
     }
 
-  } catch (e) {
-    next(e)
+  } catch (err) {
+    next(err)
   }
 };
 

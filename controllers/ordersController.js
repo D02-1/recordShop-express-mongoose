@@ -3,7 +3,7 @@ const Order = require("../models/Order");
 
 const getOrders = async (req, res, next) => {
   try {
-    const orders = await Order.find();
+    const orders = await Order.find().populate("record");
     res.status(200).send(orders);
   } catch (err) {
     next(err);
@@ -12,7 +12,7 @@ const getOrders = async (req, res, next) => {
 
 const getOrder = async (req, res, next) => {
   try {
-    const order = await Order.findById(req.params.id);
+    const order = await Order.findById(req.params.id).populate("record");
     if (!order) throw new Error("not found");
     res.status(200).send(order);
   } catch (err) {

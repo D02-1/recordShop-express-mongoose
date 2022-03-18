@@ -36,6 +36,7 @@ Only backend. Just the `POST /record` has a form for the file upload with multer
 **Relationships**
 
 :heavy_check_mark: Recordschema has an embedded Imageschema (it looks cleaner)
+
 :heavy_check_mark: Orderschema has got a reference to the Recordschema
 
 ---

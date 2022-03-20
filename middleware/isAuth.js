@@ -3,9 +3,8 @@ const jwt = require('jsonwebtoken')
 
 const userAuth = (req, res, next)=>{
     try{
-        // jwt is send in Header (POSTMAN or Thunder Client)
-        // Key ist authorization (req.headers.authorization) value: Bearer token
-        let token = req.headers.authorization.split(' ')[1];
+        // token is send in the cookie 
+        let token = req.cookies.access_token
         const verifiedUser = jwt.verify(token, process.env.SECRET_TOKEN);
         console.log("verifiedUser", verifiedUser);
         req.tokenUser = verifiedUser.userId

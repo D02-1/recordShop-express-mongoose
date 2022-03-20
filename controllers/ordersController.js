@@ -12,6 +12,7 @@ const getOrders = async (req, res, next) => {
 
 const getOrder = async (req, res, next) => {
   try {
+    // we use populate to read the Record Dokument with the id, where the Order is referencing to.
     const order = await Order.findById(req.params.id).populate("record");
     if (!order) throw new Error("not found");
     res.status(200).send(order);

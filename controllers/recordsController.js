@@ -14,6 +14,7 @@ const getRecords = async (req, res, next) => {
 const getRecord = async (req, res, next) => {
   try {
     const record = await Record.findById(req.params.id);
+    console.log(record.img);
     if (!record) throw new Error("not found");
     res.status(200).send(record);
   } catch (err) {

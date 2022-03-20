@@ -23,8 +23,10 @@ const userValidationPostRules = [
     .isEmpty()
     .trim()
     .escape()
-    .withMessage("Please enter your first name.")
+    .withMessage("Please enter your first name."),
+  body('confirmPassword', 'Passwords do not match').custom((value, {req}) => (value === req.body.password)),
 ];
+
 
 const userValidationPutRules = [
     body("email")
@@ -45,8 +47,8 @@ const userValidationPutRules = [
       .optional()
       .withMessage('Pls enter your firstname.')
       .trim()
-      .escape()
-  ];
+      .escape(),
+];
   
 module.exports ={userValidationPostRules , userValidationPutRules}
 

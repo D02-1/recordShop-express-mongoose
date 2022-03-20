@@ -7,7 +7,7 @@ const {getRecords, getRecord, updateRecord, deleteRecord, addRecord} = require("
 const upload = multer({
   limits:
   {
-      fileSize: 50000000
+      fileSize: 500000
   }
 });
 

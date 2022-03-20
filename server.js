@@ -5,6 +5,7 @@ const path = require("path");
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const multer = require('multer');
+const cookieParser = require('cookie-parser');
 
 
 
@@ -29,6 +30,7 @@ const db = mongoose.connect(`${process.env.DB_URL}/${process.env.DB_NAME}`)
 
 
 /** REQUEST PARSERS */
+app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(setCors);
@@ -43,22 +45,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/users", usersRouter);
 app.use("/records", recordsRouter);
 app.use("/orders", ordersRouter);
-
-app.get('/images', async (req, res, next) =>
-{
-    try{ 
-    // const coverImg = await Record.findOne({_id: "622f8f7244f38a1c5a126f00"})
-    const coverImg = await Record.findOne({_id: "622f8f7244f38a1c5a126f00"})
-    console.log("here we go", coverImg);
-    const coverImgBob = coverImg.img
-    console.log("Bob", coverImgBob.contentType);
-    if(!coverImg) throw new Error("no img found")
-            // wenn das bild gefunden wurde, übergeben wir einen status 200:
-            res.status(200).contentType(coverImgBob.contentType).send(coverImgBob.data);
-    }catch(err){
-        next(err)
-    }
-});
 
 
 

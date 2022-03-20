@@ -160,15 +160,21 @@ const loginUser = async (req, res, next) => {
         const token = jwt.sign({
           email: userLastLogin.email,
           userId: userLastLogin._id,
-        }, process.env.SECRET_TOKEN, { expiresIn: '30d' }
+        }, process.env.SECRET_TOKEN, { expiresIn: '24h' }
         )
-        res.status(200).json({
+        // cookie expires in 1day (token and cookie time should have the same expiration time)
+        // 1 day in millisecons 
+        const oneDay = ((1000 * 60 * 60 * 24))
+        res.status(200).cookie('access_token', token,{
+          httpOnly: true,
+          maxAge: oneDay
+          }).json({
           success: true,
           token: token,
           message: `You are logged in ${userLastLogin.firstName}`
         })
       } else {
-        res.send(400).res.json({
+        res.send(400).json({
           success: false,
           message: `You could not log in. Pls ensure email and password are correct.`
         })

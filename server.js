@@ -15,7 +15,7 @@ const recordsRouter = require("./routes/records");
 const ordersRouter = require("./routes/orders");
 const { setCors } = require("./middleware/cors");
 const { requestLogger } = require("./middleware/reqLogger.js")
-const Record = require("./models/Record");
+
 
 
 /** VARIABLES */

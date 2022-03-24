@@ -9,7 +9,7 @@ const {userValidationPostRules, userValidationPutRules} = require("../validation
 
 router
   .route("/")
-  .get(userAuth, userAdmin, getUsers)
+  .get(userAdmin, getUsers)
   .post(userValidationPostRules, addUser);
 
 router

@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const orderSchema = new Schema({
-  quantity: {
-    type: Number,
-    required: true
-  },
+  quantity: Number,
   record: [
     {
       ref: "Record",

@@ -14,7 +14,7 @@ const userValidationPostRules = [
   body("email")
     .isEmail()
     .normalizeEmail()
-    .withMessage("Please enter a valid email..."),
+    .withMessage("Please enter a valid email."),
   body("password")
     .isLength({ min: 5})
     .withMessage("Minimum password length is 5"),

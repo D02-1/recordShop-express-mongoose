@@ -1,5 +1,5 @@
 const Record = require("../models/Record");
-
+const { validationResult } = require("express-validator");
 
 
 const getRecords = async (req, res, next) => {
@@ -16,7 +16,7 @@ const getRecord = async (req, res, next) => {
     const record = await Record.findById(req.params.id);
     console.log(record.img);
     if (!record) throw new Error("not found");
-    res.status(200).send(record);
+    res.status(200).send(record)
   } catch (err) {
     next(err);
   }
@@ -32,21 +32,14 @@ const deleteRecord = async (req, res, next) => {
   }
 };
 
-const updateRecord = async (req, res, next) => {
-  try {
-    const record = await Record.findByIdAndUpdate(req.params.id, req.body, {
-      new: true
-    });
-    if (!record) throw new Error("not found");
-    res.status(200).send(record);
-  } catch (err) {
-    next(err);
-  }
-};
 
 const addRecord = async (req, res, next) => {
   console.log(req.body);
   try {
+    const errors = validationResult(req); 
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
     const { buffer, originalname, mimetype } = req.file
     const record = new Record(req.body);
     record.img = {
@@ -61,6 +54,6 @@ const addRecord = async (req, res, next) => {
   }
 };
 
-module.exports = { getRecords, getRecord, deleteRecord, updateRecord, addRecord }
+module.exports = { getRecords, getRecord, deleteRecord, addRecord }
 
 

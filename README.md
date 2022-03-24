@@ -4,7 +4,7 @@
 The recordshop has endpoints for users, orders and records, that our users will use to send different kinds of requests (GET, POST, DELETE, etc).
 
 
-![](recordshop.gif)
+![](recordShop.gif)
 
 Only backend. Just the `POST "/record"` has a form for the file upload with multer in the frontend.
 
@@ -20,7 +20,7 @@ Only backend. Just the `POST "/record"` has a form for the file upload with mult
 
 :heavy_check_mark: CORS Middleware
 
-:heavy_check_mark: validation / sanitation for User with [npm package express-validator](https://www.npmjs.com/package/express-validator) 
+:heavy_check_mark: validation / sanitation for User, Record and Order with [npm package express-validator](https://www.npmjs.com/package/express-validator) 
 
 :heavy_check_mark: password hashing with crypto (built in node module)
 
@@ -34,7 +34,7 @@ Only backend. Just the `POST "/record"` has a form for the file upload with mult
 - `GET on "/user"` only allowed for admins after authentication (see list of registered users)
 - `POST on "/user"` is open to every user (register)
 
-:heavy_check_mark: token for authentication is stored in cookie
+:heavy_check_mark: token for authentication is stored in cookie and send from server
 
 - **Relationships**
 
